@@ -1,0 +1,10 @@
+name: crotp
+version: 0.1.0
+
+authors:
+  - Phil Nash <philnash@gmail.com>
+
+
+crystal: 0.20.1
+
+license: MIT
