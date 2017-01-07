@@ -55,6 +55,15 @@ totp.verify(token, at: 3.minutes.ago)
 
 ```
 
+## Todo
+
+- [x] Basic HOTP and TOTP generation and verification
+- [ ] Rewrite `int_to_bytes` and extract from `CrOTP::OTP`
+- [ ] Verifying a token over a window of counters/time
+- [ ] Google Authenticator otpauth URI generation
+- [ ] Ability to choose algorithm (currently only sha1)
+- [ ] Ability to choose size of period in TOTP
+
 ## Contributing
 
 1. Fork it ( https://github.com/philnash/crotp/fork )
