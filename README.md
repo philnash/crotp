@@ -1,6 +1,6 @@
-# crotp
+# CrOTP
 
-TODO: Write a description here
+The Crystal One Time Password library.
 
 ## Installation
 
@@ -14,15 +14,46 @@ dependencies:
 
 ## Usage
 
+### HOTP
+
 ```crystal
 require "crotp"
+
+hotp = CrOTP::HOTP.new("secret")
+
+# Generate a code
+hotp.generate(counter)
+# => "423748"
+
+# Verify code
+hotp.verify(token, counter)
+# => true
 ```
 
-TODO: Write usage instructions here
+### TOTP
 
-## Development
+```crystal
+require "crotp"
 
-TODO: Write development instructions here
+totp = CrOTP::TOTP.new("secret")
+
+# Generate a code
+totp.generate
+# => "423748"
+
+# Generate a code at a specific time stamp
+totp.generate(at: 3.minutes.ago)
+# => "923832"
+
+# Verify code (verifies against the current time)
+totp.verify(token)
+# => true
+
+# Verify code at a specific time stamp
+totp.verify(token, at: 3.minutes.ago)
+# => true
+
+```
 
 ## Contributing
 

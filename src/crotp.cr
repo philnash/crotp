@@ -1,5 +1,7 @@
-require "./crotp/*"
+require "./crotp/otp"
+require "./crotp/hotp"
+require "./crotp/totp"
+require "./crotp/version"
 
-module Crotp
-  # TODO Put your code here
+module CrOTP
 end
