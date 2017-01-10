@@ -59,6 +59,7 @@ You can see and run these examples and more in `example/crotp.cr`.
 - [ ] Ability to choose algorithm (currently only sha1)
 - [ ] Ability to choose size of period in TOTP
 - [ ] Example application using Kemal
+- [ ] Much more documentation
 
 ## Contributing
 
@@ -71,3 +72,4 @@ You can see and run these examples and more in `example/crotp.cr`.
 ## Contributors
 
 - [philnash](https://github.com/philnash) Phil Nash - creator, maintainer
+- [benoist](https://github.com/benoist) Benoist Claassen
