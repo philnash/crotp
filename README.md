@@ -20,13 +20,14 @@ dependencies:
 require "crotp"
 
 hotp = CrOTP::HOTP.new("secret")
+counter = 1
 
-# Generate a code
-hotp.generate(counter)
-# => "423748"
+# Generate a token
+token = hotp.generate(counter)
+# => "533881"
 
 # Verify code
-hotp.verify(token, counter)
+result = hotp.verify(token, counter)
 # => true
 ```
 
@@ -37,23 +38,17 @@ require "crotp"
 
 totp = CrOTP::TOTP.new("secret")
 
-# Generate a code
-totp.generate
-# => "423748"
-
-# Generate a code at a specific time stamp
-totp.generate(at: 3.minutes.ago)
-# => "923832"
-
-# Verify code (verifies against the current time)
-totp.verify(token)
-# => true
+# Generate a code at a specific time stamp (by default, #generate will make a
+# code using Time.now)
+token = totp.generate(at: 1484007247)
+# => "020567"
 
 # Verify code at a specific time stamp
-totp.verify(token, at: 3.minutes.ago)
+result = totp.verify(token, at: 1484007247)
 # => true
-
 ```
+
+You can see and run these examples and more in `example/crotp.cr`.
 
 ## Todo
 
