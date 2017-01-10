@@ -58,6 +58,7 @@ You can see and run these examples and more in `example/crotp.cr`.
 - [ ] Google Authenticator otpauth URI generation
 - [ ] Ability to choose algorithm (currently only sha1)
 - [ ] Ability to choose size of period in TOTP
+- [ ] Example application using Kemal
 
 ## Contributing
 
