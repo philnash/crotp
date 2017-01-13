@@ -13,9 +13,9 @@ module CrOTP
     private def truncate(hmac : Bytes)
       offset = (hmac[-1] & 0xf)
       code = (hmac[offset].to_i & 0x7f) << 24 |
-        (hmac[offset + 1].to_i & 0xff) << 16 |
-        (hmac[offset + 2].to_i & 0xff) << 8 |
-        (hmac[offset + 3].to_i & 0xff)
+             (hmac[offset + 1].to_i & 0xff) << 16 |
+             (hmac[offset + 2].to_i & 0xff) << 8 |
+             (hmac[offset + 3].to_i & 0xff)
     end
 
     private def verify_otp(token : String, counter : Int)
