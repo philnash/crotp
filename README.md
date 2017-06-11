@@ -63,6 +63,21 @@ You can see and run these examples and more in `example/crotp.cr`.
 - [ ] Example application using Kemal
 - [ ] Much more documentation
 
+## Running the project locally
+
+First clone the project:
+
+```bash
+git clone https://github.com/philnash/crotp.git
+cd crotp
+```
+
+Run the tests with:
+
+```bash
+crystal spec
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/philnash/crotp/fork )
