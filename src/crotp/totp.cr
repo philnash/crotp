@@ -14,13 +14,13 @@ module CrOTP
       generate(at.epoch)
     end
 
-    def verify(token : String, at : Int = Time.now.epoch) : Bool
+    def verify(token : String, at : Int = Time.now.epoch, allowed_drift : Int = 0) : Bool
       counter = at / 30
-      verify_otp(token, counter)
+      Array.new(allowed_drift+1) { |i| verify_otp(token, counter - i) }.any?
     end
 
-    def verify(token : String, at : Time) : Bool
-      verify(token, at.epoch)
+    def verify(token : String, at : Time, allowed_drift : Int = 0) : Bool
+      verify(token, at.epoch, allowed_drift)
     end
   end
 end

@@ -13,7 +13,7 @@ describe CrOTP::HOTP do
     "287922",
     "162583",
     "399871",
-    "520489"
+    "520489",
   ]
   secret = "12345678901234567890"
   hotp = CrOTP::HOTP.new(secret)
@@ -34,6 +34,10 @@ describe CrOTP::HOTP do
 
       it "does not verify the RFC example for the result with counter #{counter} + 1" do
         hotp.verify(result, counter + 1).should be_false
+      end
+
+      it "does verify the RFC example for the result with counter #{counter} + 1 and an allowed drift of 1" do
+        hotp.verify(result, counter + 1, allowed_drift: 1).should be_true
       end
     end
   end

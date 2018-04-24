@@ -44,6 +44,10 @@ describe CrOTP::TOTP do
       it "does not verify the RFC example for the result with time #{time} + 1 minute" do
         totp.verify(result[2, 6], at: time + 60).should be_false
       end
+
+      it "verifies the example with time #{time} + 1 minute and an allowed drift of 2" do
+        totp.verify(result[2,6], at: time + 60, allowed_drift: 2).should be_true
+      end
     end
   end
 end
