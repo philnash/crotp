@@ -48,6 +48,14 @@ token = totp.generate(at: 1484007247)
 # Verify code at a specific time stamp
 result = totp.verify(token, at: 1484007247)
 # => true
+
+# Verify code at different time stamp, with allowed drift
+result = totp.verify(token, at: 1484007299, allowed_drift: 1)
+# => true
+
+# Verify code at different time stamp, outside allowed drift
+result = totp.verify(token, at: 1484007300, allowed_drift: 1)
+# => false
 ```
 
 You can see and run these examples and more in `example/crotp.cr`.
@@ -56,7 +64,7 @@ You can see and run these examples and more in `example/crotp.cr`.
 
 - [x] Basic HOTP and TOTP generation and verification
 - [x] Rewrite `int_to_bytes` and extract from `CrOTP::OTP`
-- [ ] Verifying a token over a window of counters/time
+- [x] Verifying a token over a window of counters/time
 - [ ] Google Authenticator otpauth URI generation
 - [ ] Ability to choose algorithm (currently only sha1)
 - [ ] Ability to choose size of period in TOTP
