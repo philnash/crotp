@@ -4,7 +4,6 @@ version: 0.1.2
 authors:
   - Phil Nash <philnash@gmail.com>
 
-
-crystal: 0.20.1
+crystal: 0.24.2
 
 license: MIT
