@@ -3,9 +3,27 @@ require "crypto/subtle"
 
 module CrOTP
   module OTP
+    enum Algorithm
+      SHA1
+    end
+
+    def base32_secret : String
+      Base32.encode(@secret, false)
+    end
+
     private def generate_otp(counter : Int) : String
       IO::ByteFormat::LittleEndian.encode(counter, bytes = Bytes.new(8))
-      digest = OpenSSL::HMAC.digest(:sha1, @secret, bytes.reverse!)
+      # This is for adding other algorithms later. SHA1 is the default and the
+      # only member of the enum for now, but the return type for `case` is
+      # (Symbol | Nil) if the `else` is not defined. So we define it as `:sha1`
+      # for now.
+      algorithm = case @algorithm
+      when Algorithm::SHA1
+        :sha1
+      else
+        :sha1
+      end
+      digest = OpenSSL::HMAC.digest(algorithm, @secret, bytes.reverse!)
       truncated = truncate(digest)
       (truncated % 10**@digits).to_s.rjust(@digits, '0')
     end

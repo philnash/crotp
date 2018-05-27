@@ -4,6 +4,11 @@ version: 0.1.2
 authors:
   - Phil Nash <philnash@gmail.com>
 
+dependencies:
+  base32:
+    github: noumar/base32
+    branch: master
+
 crystal: 0.24.2
 
 license: MIT

@@ -41,4 +41,46 @@ describe CrOTP::HOTP do
       end
     end
   end
+
+  describe "generate a authenticator app URI" do
+    hotp = CrOTP::HOTP.new(secret)
+
+    it "can show the secret in base 32" do
+      hotp.base32_secret.should eq("GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ")
+    end
+
+    describe "with just an issuer and initial counter" do
+      url = hotp.authenticator_uri(initial_counter: 0, issuer: "Test label")
+
+      it "makes a label and issuer parameter out of the issuer" do
+        url.should match(/\Aotpauth:\/\/hotp\/Test%20label/)
+        url.should match(/issuer=Test%20label/)
+      end
+
+      it "base32 encodes the secret as a parameter" do
+        url.should match(/secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ/)
+      end
+
+      it "sets the counter parameter" do
+        url.should match(/counter=0/)
+      end
+
+      it "sets the other parameters" do
+        url.should match(/digits=6/)
+        url.should match(/algorithm=SHA1/)
+      end
+    end
+
+    describe "with an issuer and a user" do
+      url = hotp.authenticator_uri(initial_counter: 0, issuer: "Test label", user: "philnash@example.com")
+
+      it "generates label from both issuer and user" do
+        url.should match(/\Aotpauth:\/\/hotp\/Test%20label:philnash%40example.com/)
+      end
+
+      it "just uses the issuer as a parameter" do
+        url.should match(/issuer=Test%20label/)
+      end
+    end
+  end
 end
