@@ -1,6 +1,6 @@
 # CrOTP
 
-The Crystal One Time Password library.
+The Crystal One Time Password library. Use this to generate HOTP or TOTP codes for two factor authentication.
 
 [![Build Status](https://travis-ci.org/philnash/crotp.svg?branch=master)](https://travis-ci.org/philnash/crotp)
 
