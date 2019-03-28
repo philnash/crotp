@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.0] - 2019-03-28
+
+### Fixed
+
+- Crystal 0.27.0 changed `Time#epoch` to `Time#to_unix`, updated within the library thanks to [@Xosmond](https://github.com/Xosmond)
+
 ## [0.1.3] - 2018-05-27
 
 ### Added

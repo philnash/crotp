@@ -1,5 +1,5 @@
 name: crotp
-version: 0.1.3
+version: 0.2.0
 
 authors:
   - Phil Nash <philnash@gmail.com>
@@ -9,6 +9,6 @@ dependencies:
     github: noumar/base32
     branch: master
 
-crystal: 0.24.2
+crystal: 0.27.0
 
 license: MIT
