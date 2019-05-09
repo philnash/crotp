@@ -3,10 +3,6 @@ require "crypto/subtle"
 
 module CrOTP
   module OTP
-    enum Algorithm
-      SHA1
-    end
-
     def base32_secret : String
       Base32.encode(@secret, false)
     end
@@ -17,13 +13,7 @@ module CrOTP
       # only member of the enum for now, but the return type for `case` is
       # (Symbol | Nil) if the `else` is not defined. So we define it as `:sha1`
       # for now.
-      algorithm = case @algorithm
-      when Algorithm::SHA1
-        :sha1
-      else
-        :sha1
-      end
-      digest = OpenSSL::HMAC.digest(algorithm, @secret, bytes.reverse!)
+      digest = OpenSSL::HMAC.digest(@algorithm, @secret, bytes.reverse!)
       truncated = truncate(digest)
       (truncated % 10**@digits).to_s.rjust(@digits, '0')
     end

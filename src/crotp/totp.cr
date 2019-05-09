@@ -4,7 +4,7 @@ module CrOTP
 
     include CrOTP::OTP
 
-    def initialize(@secret : String, @digits : Int = 6, @algorithm : OTP::Algorithm = OTP::Algorithm::SHA1)
+    def initialize(@secret : String, @digits : Int = 6, @algorithm : OpenSSL::Algorithm = OpenSSL::Algorithm::SHA1)
     end
 
     def generate(at : Int = Time.now.to_unix) : String
