@@ -4,6 +4,23 @@ The Crystal One Time Password library. Use this to generate HOTP or TOTP codes f
 
 [![Build Status](https://travis-ci.org/philnash/crotp.svg?branch=master)](https://travis-ci.org/philnash/crotp)
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [HOTP](#hotp)
+  - [TOTP](#totp)
+    - [TOTP hashing algorithms](#totp-hashing-algorithms)
+- [Authenticator applications](#authenticator-applications)
+  - [HOTP](#hotp-1)
+  - [TOTP](#totp-1)
+  - [Base 32 secret](#base-32-secret)
+- [Todo](#todo)
+- [Running the project locally](#running-the-project-locally)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contributors](#contributors)
+
 ## Installation
 
 Add this to your application's `shard.yml`:
@@ -58,6 +75,22 @@ result = totp.verify(token, at: 1484007300, allowed_drift: 1)
 # => false
 ```
 
+#### TOTP hashing algorithms
+
+According to [RFC 6238](https://tools.ietf.org/html/rfc6238) section 1.2:
+
+> TOTP implementations MAY use HMAC-SHA-256 or HMAC-SHA-512 functions, based on SHA-256 or SHA-512 hash functions, instead of the HMAC-SHA-1 function that has been specified for the HOTP computation in [RFC4226](https://tools.ietf.org/html/rfc4226).
+
+To use either SHA-256 or SHA-512 as the hashing function, initialise your `CrOTP::TOTP` object with the algorithm you want:
+
+```crystal
+require "crotp"
+
+totp = CrOTP::TOTP.new("secret", algorithm: OpenSSL::Algorithm::SHA512)
+```
+
+_Note: [authenticator applications may ignore the algorithm parameter](https://github.com/google/google-authenticator/wiki/Key-Uri-Format#algorithm) when you encode your secret in a URL/QR code as below._
+
 ### Authenticator applications
 
 To share secrets with an authenticator application, like [Authy](https://authy.com/) or Google Authenticator you need a URI that you can share as a QR code. The [implementation details for the URI are in the Google Authenticator wiki](https://github.com/google/google-authenticator/wiki/Key-Uri-Format).
@@ -106,7 +139,7 @@ You can see and run these examples and more in `example/crotp.cr`.
 - [x] Rewrite `int_to_bytes` and extract from `CrOTP::OTP`
 - [x] Verifying a token over a window of counters/time
 - [x] Google Authenticator otpauth URI generation
-- [ ] Ability to choose algorithm (currently only sha1)
+- [x] Ability to choose algorithm (currently only sha1)
 - [ ] Ability to choose size of period in TOTP
 - [ ] Example application using Kemal
 - [ ] Much more documentation
@@ -134,7 +167,12 @@ crystal spec
 4. Push to the branch (git push origin my-new-feature)
 5. Create a new Pull Request
 
+## License
+
+This code is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
 ## Contributors
 
 - [philnash](https://github.com/philnash) Phil Nash - creator, maintainer
 - [benoist](https://github.com/benoist) Benoist Claassen
+- [Xosmond](https://github.com/Xosmond) Jordano Moscoso
