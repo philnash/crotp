@@ -4,7 +4,12 @@ module CrOTP
 
     include CrOTP::OTP
 
+    ALLOWED_ALGORITHMS = [OpenSSL::Algorithm::SHA1, OpenSSL::Algorithm::SHA256, OpenSSL::Algorithm::SHA512]
+
     def initialize(@secret : String, @digits : Int = 6, @algorithm : OpenSSL::Algorithm = OpenSSL::Algorithm::SHA1)
+      if !ALLOWED_ALGORITHMS.includes?(@algorithm)
+        raise CrOTP::OTP::InvalidAlgorithmError.new("TOTP only allows for using SHA1, SHA256 or SHA512")
+      end
     end
 
     def generate(at : Int = Time.now.to_unix) : String

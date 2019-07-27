@@ -2,7 +2,8 @@ module CrOTP
   class HOTP
     include CrOTP::OTP
 
-    def initialize(@secret : String, @digits : Int = 6, @algorithm : OpenSSL::Algorithm = OpenSSL::Algorithm::SHA1)
+    def initialize(@secret : String, @digits : Int = 6)
+      @algorithm = OpenSSL::Algorithm::SHA1
     end
 
     def generate(counter : Int) : String

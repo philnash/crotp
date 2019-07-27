@@ -3,6 +3,9 @@ require "crypto/subtle"
 
 module CrOTP
   module OTP
+    class InvalidAlgorithmError < ArgumentError
+    end
+
     def base32_secret : String
       Base32.encode(@secret, false)
     end
