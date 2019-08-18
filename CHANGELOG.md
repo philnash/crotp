@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.0] - 2019-08-18
+
+### Changed
+
+- Crystal 0.30.0 deprecated `URI.escape` in favour of `URI.encode_www_form`. Updated this to match the original behaviour (with `space_to_plus: false`).
+- Crystal 0.28.0 deprecated `Time.now`. Updated to use `Time.utc` which is actually more correct according to the RFC.
+- Crystal 0.29.0 deprecated the behaviour of `Int#/` to return integers. Changed to use `Int#//` instead.
+
 ## [0.3.0] - 2019-07-27
 
 ### Added
