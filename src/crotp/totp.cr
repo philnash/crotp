@@ -31,12 +31,12 @@ module CrOTP
     end
 
     def authenticator_uri(issuer : String, user : String) : String
-      label = "#{URI.escape(issuer)}:#{URI.escape(user)}"
+      label = "#{escape(issuer)}:#{escape(user)}"
       build_authenticator_uri(issuer: issuer, label: label)
     end
 
     def authenticator_uri(issuer : String) : String
-      label = URI.escape(issuer)
+      label = escape(issuer)
       build_authenticator_uri(issuer: issuer, label: label)
     end
 
@@ -45,7 +45,7 @@ module CrOTP
       query += "&algorithm=#{@algorithm}"
       query += "&period=#{PERIOD}"
       query += "&digits=#{@digits}"
-      query += "&issuer=#{URI.escape(issuer)}"
+      query += "&issuer=#{escape(issuer)}"
       "otpauth://totp/#{label}?#{query}"
     end
   end

@@ -33,5 +33,9 @@ module CrOTP
       otp = generate_otp(counter)
       Crypto::Subtle.constant_time_compare(otp, token)
     end
+
+    private def escape(string : String)
+      URI.encode_www_form(string, space_to_plus: false)
+    end
   end
 end
