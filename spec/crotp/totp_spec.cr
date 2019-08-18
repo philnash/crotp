@@ -87,7 +87,7 @@ describe CrOTP::TOTP do
       totp = CrOTP::TOTP.new(secret)
 
       it "verifies the current time" do
-        totp.verify(totp.generate, at: Time.now).should be_true
+        totp.verify(totp.generate, at: Time.utc).should be_true
       end
 
       results[:sha1].each do |(time, result)|
@@ -109,7 +109,7 @@ describe CrOTP::TOTP do
       totp = CrOTP::TOTP.new(secret, algorithm: OpenSSL::Algorithm::SHA256)
 
       it "verifies the current time" do
-        totp.verify(totp.generate, at: Time.now).should be_true
+        totp.verify(totp.generate, at: Time.utc).should be_true
       end
 
       results[:sha256].each do |(time, result)|
@@ -131,7 +131,7 @@ describe CrOTP::TOTP do
       totp = CrOTP::TOTP.new(secret, algorithm: OpenSSL::Algorithm::SHA512)
 
       it "verifies the current time" do
-        totp.verify(totp.generate, at: Time.now).should be_true
+        totp.verify(totp.generate, at: Time.utc).should be_true
       end
 
       results[:sha512].each do |(time, result)|

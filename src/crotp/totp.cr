@@ -12,7 +12,7 @@ module CrOTP
       end
     end
 
-    def generate(at : Int = Time.now.to_unix) : String
+    def generate(at : Int = Time.utc.to_unix) : String
       counter = at // PERIOD
       generate_otp(counter)
     end
@@ -21,7 +21,7 @@ module CrOTP
       generate(at.to_unix)
     end
 
-    def verify(token : String, at : Int = Time.now.to_unix, allowed_drift : Int = 0) : Bool
+    def verify(token : String, at : Int = Time.utc.to_unix, allowed_drift : Int = 0) : Bool
       counter = at // PERIOD
       Array.new(allowed_drift + 1) { |i| verify_otp(token, counter - i) }.any?
     end
