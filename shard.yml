@@ -6,8 +6,8 @@ authors:
 
 dependencies:
   base32:
-    github: noumar/base32
-    branch: master
+    github: repomaa/base32
+    branch: topic/crystal-0-31-0
 
 crystal: 0.30.0
 
