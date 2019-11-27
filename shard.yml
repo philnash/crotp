@@ -9,6 +9,11 @@ dependencies:
     github: repomaa/base32
     branch: topic/crystal-0-31-0
 
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: ~> 0.10.1
+
 crystal: 0.31.0
 
 license: MIT

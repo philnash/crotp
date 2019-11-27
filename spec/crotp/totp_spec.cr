@@ -40,7 +40,7 @@ describe CrOTP::TOTP do
         end
 
         it "matches the RFC example at #{time} for 8 digits" do
-          totp = CrOTP::TOTP.new(secret, digits = 8)
+          totp = CrOTP::TOTP.new(secret, digits: 8)
           totp.generate(at: time).should eq(result)
         end
       end
@@ -54,7 +54,7 @@ describe CrOTP::TOTP do
         end
 
         it "matches the RFC example at #{time} for 8 digits" do
-          totp = CrOTP::TOTP.new(secret, digits = 8, algorithm: OpenSSL::Algorithm::SHA256)
+          totp = CrOTP::TOTP.new(secret, digits: 8, algorithm: OpenSSL::Algorithm::SHA256)
           totp.generate(at: time).should eq(result)
         end
       end
@@ -68,7 +68,7 @@ describe CrOTP::TOTP do
         end
 
         it "matches the RFC example at #{time} for 8 digits" do
-          totp = CrOTP::TOTP.new(secret, digits = 8, algorithm: OpenSSL::Algorithm::SHA512)
+          totp = CrOTP::TOTP.new(secret, digits: 8, algorithm: OpenSSL::Algorithm::SHA512)
           totp.generate(at: time).should eq(result)
         end
       end
@@ -76,7 +76,7 @@ describe CrOTP::TOTP do
     describe "with an incorrect algorithm" do
       it "throws an InvalidAlgorithmError" do
         expect_raises(CrOTP::OTP::InvalidAlgorithmError) {
-          totp = CrOTP::TOTP.new(secret, algorithm: OpenSSL::Algorithm::MD5)
+          CrOTP::TOTP.new(secret, algorithm: OpenSSL::Algorithm::MD5)
         }
       end
     end

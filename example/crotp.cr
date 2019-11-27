@@ -37,11 +37,11 @@ result = totp.verify(token)
 puts result
 
 # Verify code at different time stamp, with allowed drift
-result = totp.verify(token, at: 1484007299, allowed_drift: 1)
+totp.verify(token, at: 1484007299, allowed_drift: 1)
 # => true
 
 # Verify code at different time stamp, outside allowed drift
-result = totp.verify(token, at: 1484007300, allowed_drift: 1)
+totp.verify(token, at: 1484007300, allowed_drift: 1)
 # => false
 
 # Authenticator URI
