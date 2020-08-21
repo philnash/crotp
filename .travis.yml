@@ -4,3 +4,9 @@ install:
 script:
   - crystal spec
   - crystal bin/ameba.cr
+crystal:
+  - latest
+  - nightly
+jobs:
+  allow_failures:
+    - crystal: nightly
