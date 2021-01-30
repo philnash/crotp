@@ -2,24 +2,25 @@
 
 The Crystal One Time Password library. Use this to generate HOTP or TOTP codes for two factor authentication.
 
-[![Build Status](https://travis-ci.org/philnash/crotp.svg?branch=master)](https://travis-ci.org/philnash/crotp)
+[![Build Status](https://github.com/philnash/crotp/workflows/Tests/badge.svg)](https://github.com/philnash/crotp/actions?query=workflow%3ATests)
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-  - [HOTP](#hotp)
-  - [TOTP](#totp)
-    - [TOTP hashing algorithms](#totp-hashing-algorithms)
-- [Authenticator applications](#authenticator-applications)
-  - [HOTP](#hotp-1)
-  - [TOTP](#totp-1)
-  - [Base 32 secret](#base-32-secret)
-- [Todo](#todo)
-- [Running the project locally](#running-the-project-locally)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contributors](#contributors)
+* [Table of Contents](#table-of-contents)
+* [Installation](#installation)
+* [Usage](#usage)
+  * [HOTP](#hotp)
+  * [TOTP](#totp)
+    * [TOTP hashing algorithms](#totp-hashing-algorithms)
+  * [Authenticator applications](#authenticator-applications)
+    * [HOTP](#hotp-1)
+    * [TOTP](#totp-1)
+    * [Base 32 secret](#base-32-secret)
+* [Todo](#todo)
+* [Running the project locally](#running-the-project-locally)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contributors](#contributors)
 
 ## Installation
 
