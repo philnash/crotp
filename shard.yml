@@ -6,8 +6,8 @@ authors:
 
 dependencies:
   base32:
-    github: repomaa/base32
-    branch: topic/crystal-0-31-0
+    github: philnash/base32
+    branch: crystal-version
 
 development_dependencies:
   ameba:
