@@ -6,6 +6,9 @@ module CrOTP
     class InvalidAlgorithmError < ArgumentError
     end
 
+    class InvalidPeriodError < ArgumentError
+    end
+
     def base32_secret : String
       Base32.encode(@secret, false)
     end

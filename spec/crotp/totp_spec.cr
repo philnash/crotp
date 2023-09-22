@@ -28,6 +28,22 @@ describe CrOTP::TOTP do
       {2000000000, "56464532"},
       {20000000000, "69481994"},
     ],
+    :period60 => [
+      {59, "04125165"},
+      {1111111109, "38502480"},
+      {1111111111, "38502480"},
+      {1234567890, "86895423"},
+      {2000000000, "81029236"},
+      {20000000000, "69751942"},
+    ],
+    :period90 => [
+      {59, "04125165"},
+      {1111111109, "49104105"},
+      {1111111111, "81268462"},
+      {1234567890, "89794332"},
+      {2000000000, "65106427"},
+      {20000000000, "39807694"},
+    ],
   }
   secret = "12345678901234567890"
 
@@ -77,6 +93,28 @@ describe CrOTP::TOTP do
       it "throws an InvalidAlgorithmError" do
         expect_raises(CrOTP::OTP::InvalidAlgorithmError) {
           CrOTP::TOTP.new(secret, algorithm: OpenSSL::Algorithm::MD5)
+        }
+      end
+    end
+
+    describe "with specific period" do
+      results[:period60].each do |(time, result)|
+        it "matches period 60 at #{time}" do
+          totp = CrOTP::TOTP.new(secret, digits: 8, period: 60, algorithm: OpenSSL::Algorithm::SHA512)
+          totp.generate(at: time).should eq(result)
+        end
+      end
+      results[:period90].each do |(time, result)|
+        it "matches period 90 at #{time}" do
+          totp = CrOTP::TOTP.new(secret, digits: 8, period: 90, algorithm: OpenSSL::Algorithm::SHA512)
+          totp.generate(at: time).should eq(result)
+        end
+      end
+    end
+    describe "with incorrect period" do
+      it "throws an InvalidPeriodError" do
+        expect_raises(CrOTP::OTP::InvalidPeriodError) {
+          CrOTP::TOTP.new(secret, period: 15)
         }
       end
     end
